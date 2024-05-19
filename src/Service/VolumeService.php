@@ -24,5 +24,10 @@ class VolumeService {
 
         return $volumes;
     }
+
+    public function retrieveVolumeBySearch()
+    {
+        
+    }
 }
 ?>

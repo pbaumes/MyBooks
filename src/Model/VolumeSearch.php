@@ -5,21 +5,21 @@ class VolumeSearch
 {
     private int $id;
 
-    private string $title = '';
+    private string $search = '';
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function getTitle(): string
+    public function getSearch(): string
     {
-        return $this->title;
+        return $this->search;
     }
 
-    public function setTitle(string $title): self
+    public function setSearch(string $search): self
     {
-        $this->title = $title;
+        $this->search = $search;
 
         return $this;
     }

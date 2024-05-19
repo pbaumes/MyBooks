@@ -41,6 +41,11 @@ class VolumeController extends AbstractController
         $volume = new VolumeSearch();
         $form = $this->createForm(VolumeSearchType::class, $volume);
 
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            dd($form->get('search')->getData());
+        }
+
         return $this->render('volume/search.html.twig', [
             'form' => $form
         ]);
