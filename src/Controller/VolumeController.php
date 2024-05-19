@@ -17,7 +17,8 @@ class VolumeController extends AbstractController
 {    
     public function __construct(
         private HttpClientInterface $googleBooksClient,
-        private SerializerInterface $serializer
+        private SerializerInterface $serializer,
+        private VolumeService $volumeService
     ) {
     }
 
@@ -26,11 +27,10 @@ class VolumeController extends AbstractController
         Request $request,
         VolumeService $volumeService
     ) {
-        $response = $this->googleBooksClient->request('GET', '/books/v1/volumes?q=isbn:0747532699');
-        $volumes = $volumeService->hydrate($response->toArray(), new VolumeDto());
+        $volumes = $request->query->all('volumes');
 
         return $this->render('volume/list.html.twig', [
-            'volumes' => $volumes
+            'volumes' => $volumes['items']
         ]);
     }
 
@@ -38,12 +38,17 @@ class VolumeController extends AbstractController
     public function search(
         Request $request
     ) {
+        $volumes = null;
         $volume = new VolumeSearch();
         $form = $this->createForm(VolumeSearchType::class, $volume);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form->get('search')->getData());
+            $searchWords = $form->get('search')->getData();
+
+            $volumes = $this->volumeService->getVolumeBySearch($searchWords);
+
+            return $this->redirectToRoute('volume_list', ['volumes' => $volumes]);
         }
 
         return $this->render('volume/search.html.twig', [

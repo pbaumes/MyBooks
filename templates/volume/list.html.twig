@@ -17,19 +17,36 @@
                     </thead>
                     <tbody>
                         {% for volume in volumes %}
-                        {{ dump(volume) }}
                             <tr>
                                 <th scope="row">{{ loop.index }}</th>
                                 <td>{{ volume.volumeInfo.title }}</td>
                                 <td>
-                                    {% for author in volume.volumeInfo.authors %}
-                                        {{ author }} {{ loop.last ? '' : ',' }}
-                                    {% endfor %}
+                                    {% if volume.volumeInfo.authors is defined and volume.volumeInfo.authors is not empty %}
+                                        {% for author in volume.volumeInfo.authors %}
+                                            {{ author }} {{ loop.last ? '' : ',' }}
+                                        {% endfor %}
+                                    {% endif %}
                                 </td>
-                                <td>{{ volume.volumeInfo.publisher }}</td>
-                                <td>{{ volume.volumeInfo.pageCount }}</td>
-                                <td>{{ volume.volumeInfo.averageRating }}</td>
-                                <td>{{ volume.volumeInfo.ratingsCount }}</td>
+                                <td>
+                                    {% if volume.volumeInfo.publisher is defined and volume.volumeInfo.publisher is not empty %}
+                                        {{ volume.volumeInfo.publisher }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if volume.volumeInfo.pageCount is defined and volume.volumeInfo.pageCount is not empty %}
+                                        {{ volume.volumeInfo.pageCount }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if volume.volumeInfo.averageRating is defined and volume.volumeInfo.averageRating is not empty %}
+                                        {{ volume.volumeInfo.averageRating }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if volume.volumeInfo.ratingsCount is defined and volume.volumeInfo.ratingsCount is not empty %}
+                                        {{ volume.volumeInfo.ratingsCount }}
+                                    {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
