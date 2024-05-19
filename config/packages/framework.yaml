@@ -1,13 +1,21 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
     secret: '%env(APP_SECRET)%'
-    #csrf_protection: true
+    csrf_protection: true
 
     # Note that the session will be started ONLY if you read or write from it.
     session: true
 
     #esi: true
     #fragments: true
+
+    http_client:
+        scoped_clients:
+            google.books.client:
+                base_uri: 'https://www.googleapis.com'
+                headers:
+                    Accept: 'application/vnd.github.v3+json'
+                    auth_bearer: '%%env(GOOGLE_API_BOOKS_KEY)%'
 
 when@test:
     framework:

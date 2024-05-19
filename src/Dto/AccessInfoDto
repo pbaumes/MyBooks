@@ -1,0 +1,137 @@
+<?php
+
+namespace App\Dto;
+
+class AccessInfoDto {
+    public string $country;
+    public string $viewability;
+    public bool $embeddable;
+    public bool $publicDomain;
+    public string $textToSpeechPermission;
+    public array $epub;
+    public array $pdf;
+    public string $webReaderLink;
+    public string $accessViewStatus;
+    public bool $quoteSharingAllowed;
+
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getViewability(): string
+    {
+        return $this->viewability;
+    }
+
+    public function setViewability(string $viewability): self
+    {
+        $this->viewability = $viewability;
+
+        return $this;
+    }
+
+    public function isEmbeddable(): bool
+    {
+        return $this->embeddable;
+    }
+
+    public function setEmbeddable(bool $embeddable): self
+    {
+        $this->embeddable = $embeddable;
+
+        return $this;
+    }
+
+    public function isPublicDomain(): bool
+    {
+        return $this->publicDomain;
+    }
+
+    public function setPublicDomain(bool $publicDomain): self
+    {
+        $this->publicDomain = $publicDomain;
+
+        return $this;
+    }
+
+    public function getTextToSpeechPermission(): string
+    {
+        return $this->textToSpeechPermission;
+    }
+
+    public function setTextToSpeechPermission(string $textToSpeechPermission): self
+    {
+        $this->textToSpeechPermission = $textToSpeechPermission;
+
+        return $this;
+    }
+
+    public function getEpub(): array
+    {
+        return $this->epub;
+    }
+
+    public function setEpub(array $epub): self
+    {
+        $this->epub = $epub;
+
+        return $this;
+    }
+
+    public function getPdf(): array
+    {
+        return $this->pdf;
+    }
+
+    public function setPdf(array $pdf): self
+    {
+        $this->pdf = $pdf;
+
+        return $this;
+    }
+
+    public function getWebReaderLink(): string
+    {
+        return $this->webReaderLink;
+    }
+
+    public function setWebReaderLink(string $webReaderLink): self
+    {
+        $this->webReaderLink = $webReaderLink;
+
+        return $this;
+    }
+
+    public function getAccessViewStatus(): string
+    {
+        return $this->accessViewStatus;
+    }
+
+    public function setAccessViewStatus(string $accessViewStatus): self
+    {
+        $this->accessViewStatus = $accessViewStatus;
+
+        return $this;
+    }
+
+    public function isQuoteSharingAllowed(): bool
+    {
+        return $this->quoteSharingAllowed;
+    }
+
+    public function setQuoteSharingAllowed(bool $quoteSharingAllowed): self
+    {
+        $this->quoteSharingAllowed = $quoteSharingAllowed;
+
+        return $this;
+    }
+}
+?>

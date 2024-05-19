@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% if volumes is defined and volumes is not empty %}
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Auteur(s)</th>
+                        <th scope="col">Editeur</th>
+                        <th scope="col">Nombre de pages</th>
+                        <th scope="col">Note moyenne</th>
+                        <th scope="col">Nombre de notes</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for volume in volumes %}
+                        {{ dump(volume) }}
+                            <tr>
+                                <th scope="row">{{ loop.index }}</th>
+                                <td>{{ volume.volumeInfo.title }}</td>
+                                <td>
+                                    {% for author in volume.volumeInfo.authors %}
+                                        {{ author }} {{ loop.last ? '' : ',' }}
+                                    {% endfor %}
+                                </td>
+                                <td>{{ volume.volumeInfo.publisher }}</td>
+                                <td>{{ volume.volumeInfo.pageCount }}</td>
+                                <td>{{ volume.volumeInfo.averageRating }}</td>
+                                <td>{{ volume.volumeInfo.ratingsCount }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
